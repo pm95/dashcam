@@ -50,24 +50,19 @@ class NewTrip extends React.Component {
     const data = new FormData();
     data.append("file", this.uploadInput.files[0]);
 
-    fetch("http://localhost:5000/api/submit", {
+    fetch("http://192.168.1.87:5000/api/submit", {
       method: "POST",
       mode: "no-cors",
       body: data
     })
       .then(res => {
-        res.text();
-      })
-      .then(data => {
-        console.log(data);
+        this.setState({
+          imageURL: URL.createObjectURL(this.uploadInput.files[0])
+        });
       })
       .catch(err => {
         console.error(err);
       });
-
-    this.setState({
-      imageURL: URL.createObjectURL(this.uploadInput.files[0])
-    });
   }
 
   render() {
