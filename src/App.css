@@ -53,15 +53,13 @@ header {
   background: var(--color-emphasis);
 }
 
-img {
-  background: var(--color-emphasis);
-  border-radius: 50%;
-  padding: 10px;
-}
-
 footer,
 header {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+video {
+  background: red;
 }

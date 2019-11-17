@@ -4,13 +4,13 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import "./App.css";
 
-import camera from "./assets/camera.png";
-import car from "./assets/car.png";
+// import camera from "./assets/camera.png";
+// import car from "./assets/car.png";
 import dashboard from "./assets/dashboard.png";
 import history from "./assets/history.png";
-import person from "./assets/person.png";
-import roll from "./assets/roll.png";
-import save from "./assets/save.png";
+// import person from "./assets/person.png";
+// import roll from "./assets/roll.png";
+// import save from "./assets/save.png";
 import cameraadd from "./assets/camera-add.png";
 
 function Header() {
@@ -40,49 +40,62 @@ function Option(props) {
 class NewTrip extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { videoSrc: null };
-    this.handleChange = this.handleChange.bind(this);
+    this.state = { imageURL: "" };
+    this.handleUploadImage = this.handleUploadImage.bind(this);
   }
 
-  handleChange(e) {
-    const file = e.target.files[0];
-    const videoSrc = URL.createObjectURL(file);
-    this.setState(
-      {
-        videoSrc: videoSrc
-      },
-      () => {
-        alert(videoSrc);
-      }
-    );
+  handleUploadImage(ev) {
+    ev.preventDefault();
+
+    const data = new FormData();
+    data.append("file", this.uploadInput.files[0]);
+
+    fetch("http://localhost:5000/api/submit", {
+      method: "POST",
+      mode: "no-cors",
+      body: data
+    })
+      .then(res => {
+        res.text();
+      })
+      .then(data => {
+        console.log(data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+
+    this.setState({
+      imageURL: URL.createObjectURL(this.uploadInput.files[0])
+    });
   }
 
   render() {
     return (
-      <div className="new-trip">
-        <h1>New Trip</h1>
-        <input
-          type="file"
-          accept="video/*"
-          capture="camera"
-          id="recorder"
-          onChange={this.handleChange}
-        />
-        {this.state.videoSrc === null ? (
-          <p>No video recorded</p>
-        ) : (
-          <video src={this.state.videoSrc} autoPlay muted></video>
-        )}
-      </div>
+      <form onSubmit={this.handleUploadImage}>
+        <h1>Secure Dashboard</h1>
+        <div>
+          <input
+            ref={ref => {
+              this.uploadInput = ref;
+            }}
+            type="file"
+            accept="video/*"
+            capture="camera"
+          />
+        </div>
+
+        <br />
+        <div>
+          <button>Upload</button>
+        </div>
+        <img src={this.state.imageURL} alt="vid" />
+      </form>
     );
   }
 }
 
 class Main extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="main">
