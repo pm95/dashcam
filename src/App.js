@@ -12,6 +12,7 @@ import history from "./assets/history.png";
 // import roll from "./assets/roll.png";
 // import save from "./assets/save.png";
 import cameraadd from "./assets/camera-add.png";
+import drivervid from "./assets/drivervid.mp4";
 
 function Header() {
   return (
@@ -45,31 +46,38 @@ class NewTrip extends React.Component {
   }
 
   handleUploadImage(ev) {
-    ev.preventDefault();
+    if (typeof this.uploadInput.files[0] === "undefined") {
+      alert("please record a trip first");
+    } else {
+      ev.preventDefault();
 
-    const data = new FormData();
-    data.append("file", this.uploadInput.files[0]);
+      const data = new FormData();
+      data.append("file", this.uploadInput.files[0]);
 
-    fetch("http://192.168.1.87:5000/api/submit", {
-      method: "POST",
-      mode: "no-cors",
-      body: data
-    })
-      .then(res => {
-        this.setState({
-          imageURL: URL.createObjectURL(this.uploadInput.files[0])
-        });
-      })
-      .catch(err => {
-        console.error(err);
+      this.setState({
+        imageURL: URL.createObjectURL(this.uploadInput.files[0])
       });
+
+      fetch("http://192.168.1.87:5000/api/submit", {
+        method: "POST",
+        mode: "no-cors",
+        body: data
+      })
+        .then(res => {
+          alert("trip video uploaded successfully");
+        })
+        .catch(err => {
+          alert("error when uploading your trip");
+          console.error(err);
+        });
+    }
   }
 
   render() {
     return (
       <form onSubmit={this.handleUploadImage}>
-        <h1>Secure Dashboard</h1>
-        <div>
+        <div className="newtrip">
+          <h1>Secure Dashboard</h1>
           <input
             ref={ref => {
               this.uploadInput = ref;
@@ -78,13 +86,20 @@ class NewTrip extends React.Component {
             accept="video/*"
             capture="camera"
           />
+          <button>Submit</button>
+          <div>
+            {this.state.imageURL === "" ? null : (
+              <img
+                src={this.state.imageURL}
+                alt="vid"
+                className="trip-video-container"
+              />
+            )}
+          </div>
+          <Link to="/">
+            <button>Return to main</button>
+          </Link>
         </div>
-
-        <br />
-        <div>
-          <button>Upload</button>
-        </div>
-        <img src={this.state.imageURL} alt="vid" />
       </form>
     );
   }
@@ -128,6 +143,18 @@ function App() {
           path="/"
           render={props => (
             <div className="App">
+              {/* <video
+                autoPlay
+                muted
+                loop
+                timelineSelector="false"
+                id="drivervid"
+              >
+                <source
+                  src="https://giphy.com/embed/3oxRmD9a5pLTOOLigM"
+                  type="video/mp4"
+                ></source>
+              </video> */}
               <Header></Header>
               <Main></Main>
               <Footer></Footer>

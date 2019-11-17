@@ -1,13 +1,25 @@
 :root {
   --color-main: rgb(30, 30, 30);
+  --color-main-a: rgb(30, 30, 30, 0.8);
   --color-emphasis: rgba(154, 60, 168, 0.619);
   --color-emphasis: var(--color-main);
   --height-header: 10%;
   --height-footer: 5%;
 }
 
+#drivervid {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 101%;
+  min-height: 100%;
+  z-index: -1;
+  filter: blur(4px);
+}
+
 .App {
-  background-color: var(--color-main);
+  background: url("./assets/road.gif");
+  background-size: cover;
   color: white;
   position: absolute;
   text-align: left;
@@ -32,6 +44,7 @@
   margin-left: auto;
   margin-right: auto;
   padding: 0 5vw 0 5vw;
+  background: var(--color-main-a);
 }
 
 .main-wrapper {
@@ -45,12 +58,11 @@
 
 footer {
   grid-area: "footer";
-  background: var(--color-emphasis);
 }
 
 header {
   grid-area: "header";
-  background: var(--color-emphasis);
+  font-size: calc(8pt + 2vw);
 }
 
 footer,
@@ -60,6 +72,36 @@ header {
   align-items: center;
 }
 
-video {
-  background: red;
+.trip-video-container {
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+.newtrip {
+  background-color: var(--color-main);
+  color: white;
+  position: absolute;
+  text-align: left;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+button {
+  font-size: large;
+  width: 150px;
+  height: 50px;
+  border-radius: 4px;
+  cursor: pointer;
+  background: white;
+}
+
+button:hover {
+  background: var(--color-emphasis);
+  color: white;
 }
