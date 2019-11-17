@@ -12,7 +12,6 @@ import history from "./assets/history.png";
 // import roll from "./assets/roll.png";
 // import save from "./assets/save.png";
 import cameraadd from "./assets/camera-add.png";
-import drivervid from "./assets/drivervid.mp4";
 
 function Header() {
   return (
