@@ -34,8 +34,10 @@ class NewTrip extends React.Component {
         });
       })
       .catch(err => {
-        // alert("error when uploading your trip");
         console.error(err);
+        this.setState({
+          imageURL: "error"
+        });
       });
   }
 
@@ -82,6 +84,31 @@ class NewTrip extends React.Component {
       return (
         <>
           <h1 style={{ color: "white" }}>Video uploaded successfully</h1>
+          <button
+            onClick={() => {
+              this.setState({
+                imageURL: ""
+              });
+            }}
+          >
+            Upload new trip
+          </button>
+          <Link to="/">
+            <button>
+              <img src={home}></img>
+            </button>
+          </Link>
+        </>
+      );
+    } else if (this.state.imageURL === "error") {
+      return (
+        <>
+          <h1 style={{ color: "rgb(252, 67, 76)" }}>
+            Error when uploading video
+          </h1>
+          <h2 style={{ color: "rgb(252, 67, 76)" }}>
+            Likely due to server disconnect ...
+          </h2>
           <button
             onClick={() => {
               this.setState({
