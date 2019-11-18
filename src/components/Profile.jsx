@@ -43,7 +43,6 @@ class Profile extends React.Component {
         return res.json();
       })
       .then(data => {
-        console.log(data);
         this.setState({
           firstName: data.firstName
         });
@@ -66,6 +65,19 @@ class Profile extends React.Component {
       default:
         return "100 GB";
     }
+  }
+
+  getCurrentLocation() {
+    console.log(
+      navigator.geolocation.getCurrentPosition(pos => {
+        let crd = pos.coords;
+
+        console.log("Your current position is:");
+        console.log(`Latitude : ${crd.latitude}`);
+        console.log(`Longitude: ${crd.longitude}`);
+        console.log(`More or less ${crd.accuracy} meters.`);
+      })
+    );
   }
 
   render() {
@@ -127,10 +139,18 @@ class Profile extends React.Component {
                 <option value="Basic">Basic</option>
                 <option value="Free">Free</option>
               </select>
-              <p>Storage Capacity</p>
-              <p>{this.calcStorageCapacity()}</p>
-              <p>Available Storage</p>
-              <p>{this.calcStorageCapacity()}</p>
+              <label>Storage Capacity</label>
+              <input
+                type="text"
+                value={this.calcStorageCapacity()}
+                readOnly
+              ></input>
+              <label>Available Storage</label>
+              <input
+                type="text"
+                value={this.calcStorageCapacity()}
+                readOnly
+              ></input>
             </div>
           </div>
 

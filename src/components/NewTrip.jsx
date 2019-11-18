@@ -22,7 +22,7 @@ class NewTrip extends React.Component {
     const data = new FormData();
     data.append("file", this.uploadInput.files[0]);
 
-    fetch("http://10.35.42.221:5000/api/submit", {
+    fetch("http://localhost:5000/api/submit", {
       method: "POST",
       body: data
     })
@@ -44,90 +44,96 @@ class NewTrip extends React.Component {
   }
 
   renderUpload() {
-    if (this.state.imageURL === "") {
-      return (
-        <>
-          <form onSubmit={this.handleUploadImage}>
-            <div className="newtrip">
-              <input
-                id="file-upload"
-                ref={ref => {
-                  this.uploadInput = ref;
-                }}
-                type="file"
-                accept="video/*"
-                capture="camera"
-                required
-              />
-              <button>Submit</button>
-              <div>
-                {this.state.imageURL === "" ? null : (
-                  <p>Uploaded {this.state.imageURL}</p>
-                )}
+    let result = null;
+    switch (this.state.imageURL) {
+      case "":
+        result = (
+          <>
+            <form onSubmit={this.handleUploadImage}>
+              <div className="newtrip">
+                <input
+                  id="file-upload"
+                  ref={ref => {
+                    this.uploadInput = ref;
+                  }}
+                  type="file"
+                  accept="video/*"
+                  capture="camera"
+                  required
+                />
+                <button>Submit</button>
+                <div>
+                  {this.state.imageURL === "" ? null : (
+                    <p>Uploaded {this.state.imageURL}</p>
+                  )}
+                </div>
               </div>
-            </div>
-          </form>
-          <Link to="/">
-            <button>
-              <img src={home} alt="Home"></img>
+            </form>
+            <Link to="/">
+              <button>
+                <img src={home} alt="Home"></img>
+              </button>
+            </Link>
+          </>
+        );
+        break;
+      case "loading":
+        result = (
+          <>
+            <h1 style={{ color: "white" }}>
+              Uploading your video, please hang on ...
+            </h1>
+          </>
+        );
+        break;
+      case "success":
+        result = (
+          <>
+            <h1 style={{ color: "white" }}>Video uploaded successfully</h1>
+            <button
+              onClick={() => {
+                this.setState({
+                  imageURL: ""
+                });
+              }}
+            >
+              Upload new trip
             </button>
-          </Link>
-        </>
-      );
-    } else if (this.state.imageURL === "loading") {
-      return (
-        <>
-          <h1 style={{ color: "white" }}>
-            Uploading your video, please hang on ...
-          </h1>
-        </>
-      );
-    } else if (this.state.imageURL === "success") {
-      return (
-        <>
-          <h1 style={{ color: "white" }}>Video uploaded successfully</h1>
-          <button
-            onClick={() => {
-              this.setState({
-                imageURL: ""
-              });
-            }}
-          >
-            Upload new trip
-          </button>
-          <Link to="/">
-            <button>
-              <img src={home} alt="Home"></img>
+            <Link to="/">
+              <button>
+                <img src={home} alt="Home"></img>
+              </button>
+            </Link>
+          </>
+        );
+        break;
+      case "error":
+        result = (
+          <>
+            <h1 style={{ color: "rgb(252, 67, 76)" }}>
+              Error when uploading video
+            </h1>
+            <h2 style={{ color: "rgb(252, 67, 76)" }}>
+              Likely due to server disconnect ...
+            </h2>
+            <button
+              onClick={() => {
+                this.setState({
+                  imageURL: ""
+                });
+              }}
+            >
+              Upload new trip
             </button>
-          </Link>
-        </>
-      );
-    } else if (this.state.imageURL === "error") {
-      return (
-        <>
-          <h1 style={{ color: "rgb(252, 67, 76)" }}>
-            Error when uploading video
-          </h1>
-          <h2 style={{ color: "rgb(252, 67, 76)" }}>
-            Likely due to server disconnect ...
-          </h2>
-          <button
-            onClick={() => {
-              this.setState({
-                imageURL: ""
-              });
-            }}
-          >
-            Upload new trip
-          </button>
-          <Link to="/">
-            <button>
-              <img src={home} alt="Home"></img>
-            </button>
-          </Link>
-        </>
-      );
+            <Link to="/">
+              <button>
+                <img src={home} alt="Home"></img>
+              </button>
+            </Link>
+          </>
+        );
     }
+    return result;
   }
 
   render() {

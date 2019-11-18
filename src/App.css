@@ -6,6 +6,26 @@
   --height-footer: 5%;
 }
 
+select,
+label,
+input[type="text"] {
+  font-size: 16pt;
+  padding: 2px 8px 2px 8px;
+  background: white;
+}
+
+p {
+  font-size: 16pt;
+}
+
+select {
+  border-bottom: 4px solid var(--color-emphasis);
+}
+
+label {
+  background: transparent;
+}
+
 /* MISCELANEOUS */
 #drivervid {
   position: fixed;
