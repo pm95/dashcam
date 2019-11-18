@@ -7,9 +7,10 @@ import "./styles/NewTrip.css";
 class NewTrip extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { imageURL: "" };
+    this.state = { imageURL: "", tripName: "", dataObj: null };
     this.handleUploadImage = this.handleUploadImage.bind(this);
     this.renderUpload = this.renderUpload.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   handleUploadImage(ev) {
@@ -21,8 +22,11 @@ class NewTrip extends React.Component {
 
     const data = new FormData();
     data.append("file", this.uploadInput.files[0]);
+    data.append("tripName", this.state.tripName);
 
-    fetch("http://localhost:5000/api/submit", {
+    console.log(data.get("file"), data.get("tripName"));
+
+    fetch("http://192.168.86.248:5000/api/submit", {
       method: "POST",
       body: data
     })
@@ -30,7 +34,6 @@ class NewTrip extends React.Component {
         return res.text();
       })
       .then(d => {
-        console.log(d);
         this.setState({
           imageURL: "success"
         });
@@ -38,9 +41,42 @@ class NewTrip extends React.Component {
       .catch(err => {
         console.error(err);
         this.setState({
-          imageURL: "error"
+          imageURL: "error",
+          dataObj: data
         });
       });
+  }
+
+  handleExistingImageUpload() {
+    console.log("asdf");
+    if (this.state.dataObj !== null) {
+      fetch("http://192.168.86.248:5000/api/submit", {
+        method: "POST",
+        body: this.state.dataObj
+      })
+        .then(res => {
+          return res.text();
+        })
+        .then(d => {
+          this.setState({
+            imageURL: "success"
+          });
+        })
+        .catch(err => {
+          console.error(err);
+          this.setState({
+            imageURL: "error"
+          });
+        });
+    }
+  }
+
+  handleInputChange(e) {
+    const val = e.target.value;
+    const name = e.target.name;
+    this.setState({
+      [name]: val
+    });
   }
 
   renderUpload() {
@@ -50,7 +86,19 @@ class NewTrip extends React.Component {
         result = (
           <>
             <form onSubmit={this.handleUploadImage}>
-              <div className="newtrip">
+              <div className="new-trip-data">
+                <label>Enter trip name</label>
+                <input
+                  type="text"
+                  name="tripName"
+                  required
+                  value={this.state.tripName}
+                  onChange={this.handleInputChange}
+                ></input>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
                 <input
                   id="file-upload"
                   ref={ref => {
@@ -61,6 +109,7 @@ class NewTrip extends React.Component {
                   capture="camera"
                   required
                 />
+
                 <button>Submit</button>
                 <div>
                   {this.state.imageURL === "" ? null : (
@@ -118,6 +167,13 @@ class NewTrip extends React.Component {
             </h2>
             <button
               onClick={() => {
+                this.handleExistingImageUpload();
+              }}
+            >
+              Re-upload current trip
+            </button>
+            <button
+              onClick={() => {
                 this.setState({
                   imageURL: ""
                 });
@@ -132,6 +188,9 @@ class NewTrip extends React.Component {
             </Link>
           </>
         );
+        break;
+      default:
+        result = null;
     }
     return result;
   }

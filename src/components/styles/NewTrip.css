@@ -16,6 +16,10 @@
   height: 80%;
 }
 
+.new-trip-data {
+  color: white;
+}
+
 .new-trip-bottom {
   background: var(--color-main-a);
   height: 50%;
