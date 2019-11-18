@@ -10,8 +10,9 @@ class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: "Pietro",
-      lastName: "Test",
+      firstName: "firstName",
+      lastName: "lastName",
+      email: "user@domain.com",
       carMake: "Toyota",
       carModel: "4Runner",
       plan: "Free",
@@ -43,9 +44,7 @@ class Profile extends React.Component {
         return res.json();
       })
       .then(data => {
-        this.setState({
-          firstName: data.firstName
-        });
+        console.log(data);
       })
       .catch(err => {
         console.error(err);
