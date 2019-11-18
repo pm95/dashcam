@@ -7,7 +7,7 @@ import dashboard from "../assets/dashboard.png";
 import history from "../assets/history.png";
 import cameraadd from "../assets/camera-add.png";
 
-import "./Main.css";
+import "./styles/Main.css";
 
 function Main() {
   return (

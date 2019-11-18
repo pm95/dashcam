@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./Option.css";
+import "./styles/Option.css";
 
 function Option(props) {
   return (

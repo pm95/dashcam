@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "./NewTrip.css";
+import "./styles/NewTrip.css";
 
 class NewTrip extends React.Component {
   constructor(props) {
