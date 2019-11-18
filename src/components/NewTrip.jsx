@@ -67,7 +67,7 @@ class NewTrip extends React.Component {
           </form>
           <Link to="/">
             <button>
-              <img src={home}></img>
+              <img src={home} alt="Home"></img>
             </button>
           </Link>
         </>
@@ -95,7 +95,7 @@ class NewTrip extends React.Component {
           </button>
           <Link to="/">
             <button>
-              <img src={home}></img>
+              <img src={home} alt="Home"></img>
             </button>
           </Link>
         </>
@@ -120,7 +120,7 @@ class NewTrip extends React.Component {
           </button>
           <Link to="/">
             <button>
-              <img src={home}></img>
+              <img src={home} alt="Home"></img>
             </button>
           </Link>
         </>
@@ -133,7 +133,7 @@ class NewTrip extends React.Component {
       <div className="new-trip-container">
         <div className="new-trip-top">
           <h1>Record New Trip</h1>
-          <img src={carColored}></img>
+          <img src={carColored} alt="Car"></img>
         </div>
         <div className="new-trip-bottom">{this.renderUpload()}</div>
       </div>
