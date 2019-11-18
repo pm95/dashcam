@@ -106,6 +106,14 @@ class Profile extends React.Component {
                 value={this.state.lastName}
               ></input>
 
+              <label>Email</label>
+              <input
+                onChange={this.handleChange}
+                name="email"
+                type="text"
+                value={this.state.email}
+              ></input>
+
               <label>Car Make</label>
               <input
                 onChange={this.handleChange}
