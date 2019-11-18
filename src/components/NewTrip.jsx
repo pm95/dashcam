@@ -24,11 +24,13 @@ class NewTrip extends React.Component {
 
     fetch("http://10.35.42.221:5000/api/submit", {
       method: "POST",
-      mode: "no-cors",
       body: data
     })
       .then(res => {
-        console.log("success");
+        return res.text();
+      })
+      .then(d => {
+        console.log(d);
         this.setState({
           imageURL: "success"
         });

@@ -21,7 +21,7 @@
 button {
   font-size: large;
   width: 150px;
-  height: 50px;
+  min-height: 50px;
   border-radius: 4px;
   cursor: pointer;
   background: white;
@@ -53,6 +53,7 @@ header {
   background-image: url("./assets/road.gif");
   background-position: center;
   background-size: cover;
+
   color: white;
   position: absolute;
   text-align: left;
