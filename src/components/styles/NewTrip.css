@@ -1,5 +1,33 @@
-/* NEW TRIP COMPONENT */
-.newtrip {
+.new-trip-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.new-trip-top {
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.new-trip-top img {
+  height: 80%;
+}
+
+.new-trip-bottom {
+  background: var(--color-main-a);
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+/* .newtrip {
   background-color: var(--color-main);
   color: white;
   position: absolute;
@@ -17,4 +45,4 @@
 .trip-video-container {
   max-width: 100vw;
   max-height: 100vh;
-}
+} */
