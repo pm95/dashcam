@@ -162,7 +162,7 @@ class Profile extends React.Component {
           </div>
 
           <button onClick={() => this.updateAccountInfo()}>Update Info</button>
-          <Link to="/">
+          <Link to="/main">
             <button>
               <img src={home} alt="Home"></img>
             </button>

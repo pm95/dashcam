@@ -1,0 +1,26 @@
+.splashscreen {
+  background: var(--color-main);
+  position: absolute;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.login-container {
+  background: rgb(255, 255, 255);
+  position: relative;
+  border-radius: 4px;
+  box-shadow: 8px 12px 0px 2px var(--color-emphasis);
+
+  height: 400px;
+  width: 300px;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}

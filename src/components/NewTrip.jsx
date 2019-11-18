@@ -118,7 +118,7 @@ class NewTrip extends React.Component {
                 </div>
               </div>
             </form>
-            <Link to="/">
+            <Link to="/main">
               <button>
                 <img src={home} alt="Home"></img>
               </button>
@@ -148,7 +148,7 @@ class NewTrip extends React.Component {
             >
               Upload new trip
             </button>
-            <Link to="/">
+            <Link to="/main">
               <button>
                 <img src={home} alt="Home"></img>
               </button>
@@ -181,7 +181,7 @@ class NewTrip extends React.Component {
             >
               Upload new trip
             </button>
-            <Link to="/">
+            <Link to="/main">
               <button>
                 <img src={home} alt="Home"></img>
               </button>

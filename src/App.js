@@ -6,6 +6,7 @@ import NewTrip from "./components/NewTrip";
 import Main from "./components/Main";
 import Profile from "./components/Profile";
 import History from "./components/History";
+import SplashScreen from "./components/SplashScreen";
 
 import "./App.css";
 
@@ -40,8 +41,12 @@ function App() {
     <Router>
       <Switch>
         <Route
-          exact
           path="/"
+          exact
+          render={props => <SplashScreen></SplashScreen>}
+        ></Route>
+        <Route
+          path="/main"
           render={props => <SecureDashBoard></SecureDashBoard>}
         ></Route>
         <Route path="/new" render={props => <NewTrip />}></Route>

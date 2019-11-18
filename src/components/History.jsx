@@ -15,7 +15,7 @@ class History extends React.Component {
         </div>
         <div className="history-bottom">
           <h1>Your Trip History</h1>
-          <Link to="/">
+          <Link to="/main">
             <button>
               <img src={home} alt="Home"></img>
             </button>
