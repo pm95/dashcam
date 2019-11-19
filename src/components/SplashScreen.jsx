@@ -7,6 +7,7 @@ class SplashScreen extends React.Component {
   render() {
     return (
       <div className="splashscreen">
+        <div className="splashscreen-background"></div>
         <div className="login-container">
           <h1>Secure Dashboard</h1>
           <Link to="/main">
@@ -16,9 +17,9 @@ class SplashScreen extends React.Component {
             <button>Sign Up</button>
           </Link>
           <div>
-            <p>University of Arkansas</p>
-            <p>CSCE 5623 Mobile Programming</p>
-            <p>Pietro Malky © 2019</p>
+            <p style={{ fontSize: "10pt" }}>University of Arkansas</p>
+            <p style={{ fontSize: "10pt" }}>CSCE 5623 Mobile Programming</p>
+            <p style={{ fontSize: "10pt" }}>Pietro Malky © 2019</p>
           </div>
         </div>
       </div>
