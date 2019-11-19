@@ -10,7 +10,12 @@ import "./styles/NewTrip.css";
 class NewTrip extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { imageURL: "", tripName: "", dataObj: null };
+    this.state = {
+      imageURL: "",
+      tripName: "",
+      dataObj: null,
+      videoLoaded: false
+    };
     this.handleUploadImage = this.handleUploadImage.bind(this);
     this.renderUpload = this.renderUpload.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -88,16 +93,8 @@ class NewTrip extends React.Component {
           <>
             <form onSubmit={this.handleUploadImage}>
               <div className="new-trip-data">
-                <label>Enter trip name</label>
-                <input
-                  type="text"
-                  name="tripName"
-                  required
-                  value={this.state.tripName}
-                  onChange={this.handleInputChange}
-                ></input>
                 <button className="file-input-container">
-                  New Trip
+                  Record New
                   <input
                     id="file-upload"
                     ref={ref => {
@@ -184,7 +181,7 @@ class NewTrip extends React.Component {
     return (
       <div className="new-trip-container">
         <div className="new-trip-top">
-          <h1>Record New Trip</h1>
+          <h1>New Trip</h1>
           <img src={carColored} alt="Car"></img>
         </div>
         <div className="new-trip-bottom">
