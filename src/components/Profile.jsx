@@ -5,6 +5,7 @@ import user from "../assets/user.png";
 import home from "../assets/home.png";
 
 import "./styles/Profile.css";
+import { serverUrl } from "../Config";
 
 class Profile extends React.Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:5000/api/getuserdata", {
+    fetch(serverUrl + "/api/getuserdata", {
       method: "GET"
     })
       .then(res => {
@@ -45,6 +46,13 @@ class Profile extends React.Component {
       })
       .then(data => {
         console.log(data);
+        this.setState({
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          carMake: data.carMake,
+          carModel: data.carModel
+        });
       })
       .catch(err => {
         console.error(err);

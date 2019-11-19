@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import carColored from "../assets/carColored.png";
 import home from "../assets/home.png";
+
+import { serverUrl } from "../Config";
+
 import "./styles/NewTrip.css";
 
 class NewTrip extends React.Component {
@@ -24,9 +27,7 @@ class NewTrip extends React.Component {
     data.append("file", this.uploadInput.files[0]);
     data.append("tripName", this.state.tripName);
 
-    console.log(data.get("file"), data.get("tripName"));
-
-    fetch("http://192.168.86.248:5000/api/submit", {
+    fetch(serverUrl + "/api/submit", {
       method: "POST",
       body: data
     })
@@ -50,7 +51,7 @@ class NewTrip extends React.Component {
   handleExistingImageUpload() {
     console.log("asdf");
     if (this.state.dataObj !== null) {
-      fetch("http://192.168.86.248:5000/api/submit", {
+      fetch(serverUrl + "/api/submit", {
         method: "POST",
         body: this.state.dataObj
       })
@@ -95,20 +96,19 @@ class NewTrip extends React.Component {
                   value={this.state.tripName}
                   onChange={this.handleInputChange}
                 ></input>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <input
-                  id="file-upload"
-                  ref={ref => {
-                    this.uploadInput = ref;
-                  }}
-                  type="file"
-                  accept="video/*"
-                  capture="camera"
-                  required
-                />
+                <button className="file-input-container">
+                  New Trip
+                  <input
+                    id="file-upload"
+                    ref={ref => {
+                      this.uploadInput = ref;
+                    }}
+                    type="file"
+                    accept="video/*"
+                    capture="camera"
+                    required
+                  />
+                </button>
 
                 <button>Submit</button>
                 <div>
@@ -118,11 +118,6 @@ class NewTrip extends React.Component {
                 </div>
               </div>
             </form>
-            <Link to="/main">
-              <button>
-                <img src={home} alt="Home"></img>
-              </button>
-            </Link>
           </>
         );
         break;
@@ -148,11 +143,6 @@ class NewTrip extends React.Component {
             >
               Upload new trip
             </button>
-            <Link to="/main">
-              <button>
-                <img src={home} alt="Home"></img>
-              </button>
-            </Link>
           </>
         );
         break;
@@ -181,11 +171,6 @@ class NewTrip extends React.Component {
             >
               Upload new trip
             </button>
-            <Link to="/main">
-              <button>
-                <img src={home} alt="Home"></img>
-              </button>
-            </Link>
           </>
         );
         break;
@@ -202,7 +187,14 @@ class NewTrip extends React.Component {
           <h1>Record New Trip</h1>
           <img src={carColored} alt="Car"></img>
         </div>
-        <div className="new-trip-bottom">{this.renderUpload()}</div>
+        <div className="new-trip-bottom">
+          {this.renderUpload()}
+          <Link to="/main">
+            <button>
+              <img src={home} alt="Home"></img>
+            </button>
+          </Link>
+        </div>
       </div>
     );
   }

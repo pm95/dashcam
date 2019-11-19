@@ -5,7 +5,7 @@
 }
 
 .new-trip-top {
-  height: 50%;
+  height: 30%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -18,11 +18,19 @@
 
 .new-trip-data {
   color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.new-trip-data > * {
+  margin: 10px 0 10px 0;
 }
 
 .new-trip-bottom {
   background: var(--color-main-a);
-  height: 50%;
+  height: 70%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -30,4 +38,28 @@
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   text-align: center;
+}
+
+.file-input-container {
+  overflow: hidden;
+  position: relative;
+
+  color: black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.file-input-container [type="file"] {
+  cursor: pointer;
+  display: block;
+  font-size: 0px;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  min-height: 100%;
+  min-width: 100%;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  top: 0;
 }
