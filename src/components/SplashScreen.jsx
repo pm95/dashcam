@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import "./styles/SplashScreen.css";
 
 class LoginContainer extends React.Component {
@@ -8,10 +7,11 @@ class LoginContainer extends React.Component {
     return (
       <div className="login-container">
         <h1>Secure Dashboard</h1>
-        <Link to="/main">
+
+        <Link to="/">
           <button>Login</button>
         </Link>
-        <Link to="/main">
+        <Link to="/">
           <button>Sign Up</button>
         </Link>
         <div>
