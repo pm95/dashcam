@@ -10,8 +10,6 @@ import { SplashScreen, LoginForm, SignupForm } from "./components/SplashScreen";
 
 import "./App.css";
 
-localStorage.setItem("authenticated", "false");
-
 function Header() {
   return (
     <header>

@@ -87,7 +87,7 @@ class Profile extends React.Component {
   }
 
   render() {
-    const profileComponent = (
+    return (
       <div className="profile-container">
         <div className="profile-top">
           <img src={user} alt="Profile"></img>
@@ -160,11 +160,6 @@ class Profile extends React.Component {
           </Link>
         </div>
       </div>
-    );
-    return localStorage.getItem("email") ? (
-      profileComponent
-    ) : (
-      <h1>You must log in to use this app</h1>
     );
   }
 }

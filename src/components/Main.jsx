@@ -10,7 +10,7 @@ import cameraadd from "../assets/camera-add.png";
 import "./styles/Main.css";
 
 function Main() {
-  const mainComponent = (
+  return (
     <div className="main">
       <Option>
         <div>
@@ -33,12 +33,6 @@ function Main() {
         </Link>
       </Option>
     </div>
-  );
-
-  return localStorage.getItem("email") ? (
-    mainComponent
-  ) : (
-    <h1>You must login to use this app</h1>
   );
 }
 

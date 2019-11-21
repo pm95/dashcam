@@ -3,9 +3,11 @@ import { Link, Redirect } from "react-router-dom";
 import { serverUrl } from "../Config";
 import "./styles/SplashScreen.css";
 
-localStorage.removeItem("email");
-
 class LoginContainer extends React.Component {
+  componentDidMount() {
+    localStorage.clear();
+  }
+
   render() {
     return (
       <div className="login-container">
@@ -69,17 +71,19 @@ class SignupForm extends React.Component {
         } else {
           alert("That email is already taken");
           this.setState({
-            firstName: "",
-            lastName: "",
             email: "",
-            plan: "Free",
             validEmail: false
           });
+          localStorage.clear();
         }
       })
       .catch(err => {
         console.error(err);
       });
+  }
+
+  componentDidMount() {
+    localStorage.clear();
   }
 
   render() {
@@ -91,7 +95,7 @@ class SignupForm extends React.Component {
         <div className="splashscreen-background"></div>
 
         <div className="signup-container">
-          <h1>Create your Secure Dashboard account</h1>
+          <h1>Create your account</h1>
           <form className="signup-form-container" onSubmit={this.handleSignup}>
             <input
               required
@@ -117,17 +121,20 @@ class SignupForm extends React.Component {
               type="email"
               onChange={this.handleChange}
             ></input>
-            <select
-              value={this.state.plan}
-              name="plan"
-              type="text"
-              onChange={this.handleChange}
-            >
-              <option value="Premium">Premium</option>
-              <option value="Pro">Pro</option>
-              <option value="Basic">Basic</option>
-              <option value="Free">Free</option>
-            </select>
+            <div>
+              <label>Storage plan</label>
+              <select
+                value={this.state.plan}
+                name="plan"
+                type="text"
+                onChange={this.handleChange}
+              >
+                <option value="Premium">Premium</option>
+                <option value="Pro">Pro</option>
+                <option value="Basic">Basic</option>
+                <option value="Free">Free</option>
+              </select>
+            </div>
             <button>Sign Up</button>
           </form>
 
@@ -141,6 +148,7 @@ class SignupForm extends React.Component {
     );
   }
 }
+
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -160,15 +168,8 @@ class LoginForm extends React.Component {
     });
   }
 
-  componentDidMount() {
-    this.setState({
-      authenticated: false,
-      email: ""
-    });
-    localStorage.removeItem("email");
-  }
-
-  handleClick() {
+  handleClick(e) {
+    e.preventDefault();
     fetch(serverUrl + "/api/login", {
       method: "POST",
       body: this.state.email
@@ -182,12 +183,25 @@ class LoginForm extends React.Component {
           this.setState({
             authenticated: true
           });
-          localStorage.setItem("email", data.email);
+          localStorage.setItem("email", this.state.email);
+        } else {
+          this.setState({
+            email: ""
+          });
+          alert("We couldn't find that email, please try again");
         }
       })
       .catch(err => {
         console.error(err);
       });
+  }
+
+  componentDidMount() {
+    this.setState({
+      authenticated: false,
+      email: ""
+    });
+    localStorage.clear();
   }
 
   render() {
@@ -200,17 +214,17 @@ class LoginForm extends React.Component {
 
         <div className="login-container">
           <h1>Email Login</h1>
-
-          <div className="login-form-container">
+          <form className="login-form-container" onSubmit={this.handleClick}>
             <input
               value={this.state.email}
               placeholder="user@domain.com"
               name="email"
-              type="text"
+              type="email"
+              required
               onChange={this.handleChange}
             ></input>
-            <button onClick={this.handleClick}>Login</button>
-          </div>
+            <button>Login</button>
+          </form>
 
           <div>
             <p style={{ fontSize: "10pt" }}>University of Arkansas</p>
@@ -224,6 +238,9 @@ class LoginForm extends React.Component {
 }
 
 class SplashScreen extends React.Component {
+  componentDidMount() {
+    localStorage.clear();
+  }
   render() {
     return (
       <div className="splashscreen">

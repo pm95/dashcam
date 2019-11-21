@@ -1,3 +1,9 @@
+input[type="text"],
+input[type="email"] {
+  padding: 2px 8px 2px 8px;
+  font-size: 16pt;
+}
+
 .splashscreen-background {
   background: url("../../assets/traffic.jpg");
   background-position: left;
@@ -81,9 +87,4 @@
 
 .signup-form-container > * {
   margin: 20px;
-}
-.signup-form-container > input[type="text"],
-.signup-form-container > input[type="email"] {
-  padding: 2px 8px 2px 8px;
-  font-size: 16pt;
 }
