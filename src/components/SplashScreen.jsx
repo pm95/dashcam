@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
+import { serverUrl } from "../Config";
 import "./styles/SplashScreen.css";
 
 localStorage.removeItem("email");
@@ -54,7 +55,7 @@ class LoginForm extends React.Component {
   }
 
   handleClick() {
-    fetch("http://localhost:5000/api/login", {
+    fetch(serverUrl + "/api/login", {
       method: "POST",
       body: this.state.email
     })
