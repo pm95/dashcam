@@ -22,43 +22,25 @@ class NewTrip extends React.Component {
   }
 
   handleUploadImage(ev) {
-    this.setState({
-      uploadState: "loading"
-    });
-
     ev.preventDefault();
+    const email = localStorage.getItem("email");
 
-    const data = new FormData();
-    data.append("file", this.uploadInput.files[0]);
-    data.append("videoName", this.uploadInput.files[0].name);
-    data.append("email", localStorage.getItem("email"));
-
-    fetch(serverUrl + "/api/submit", {
-      method: "POST",
-      body: data
-    })
-      .then(res => {
-        return res.text();
-      })
-      .then(d => {
-        this.setState({
-          uploadState: d
-        });
-      })
-      .catch(err => {
-        console.error(err);
-        this.setState({
-          uploadState: "error",
-          dataObj: data
-        });
+    if (email && email !== "NOT FOUND" && email !== "") {
+      this.setState({
+        uploadState: "loading"
       });
-  }
 
-  handleExistingImageUpload() {
-    if (this.state.dataObj !== null) {
+      const data = new FormData();
+      const file = this.uploadInput.files[0];
+      const videoName = file.name;
+
+      data.append("file", file);
+      data.append("videoName", videoName);
+      data.append("email", email);
+
       fetch(serverUrl + "/api/submit", {
         method: "POST",
-        body: this.state.dataObj
+        body: data
       })
         .then(res => {
           return res.text();
@@ -71,10 +53,37 @@ class NewTrip extends React.Component {
         .catch(err => {
           console.error(err);
           this.setState({
-            uploadState: "error"
+            uploadState: "error",
+            dataObj: data
           });
         });
+    } else {
+      alert("You must log in first");
     }
+  }
+
+  handleExistingImageUpload() {
+    alert("re-submitting previous attempt");
+    // if (this.state.dataObj !== null) {
+    //   fetch(serverUrl + "/api/submit", {
+    //     method: "POST",
+    //     body: this.state.dataObj
+    //   })
+    //     .then(res => {
+    //       return res.text();
+    //     })
+    //     .then(d => {
+    //       this.setState({
+    //         uploadState: d
+    //       });
+    //     })
+    //     .catch(err => {
+    //       console.error(err);
+    //       this.setState({
+    //         uploadState: "error"
+    //       });
+    //     });
+    // }
   }
 
   handleInputChange(e) {
@@ -106,13 +115,7 @@ class NewTrip extends React.Component {
                     required
                   />
                 </button>
-
                 <button>Submit</button>
-                <div>
-                  {this.state.uploadState === "" ? null : (
-                    <p>Uploaded {this.state.uploadState}</p>
-                  )}
-                </div>
               </div>
             </form>
           </>

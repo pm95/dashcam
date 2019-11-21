@@ -36,30 +36,44 @@ function SecureDashBoard() {
   );
 }
 
-function App() {
-  return (
-    <Router>
-      <Switch>
-        <Route
-          path="/"
-          exact
-          render={props => <SplashScreen></SplashScreen>}
-        ></Route>
-        <Route path="/login" render={props => <LoginForm></LoginForm>}></Route>
-        <Route
-          path="/signup"
-          render={props => <SignupForm></SignupForm>}
-        ></Route>
-        <Route
-          path="/main"
-          render={props => <SecureDashBoard></SecureDashBoard>}
-        ></Route>
-        <Route path="/new" render={props => <NewTrip />}></Route>
-        <Route path="/history" render={props => <History></History>}></Route>
-        <Route path="/profile" render={props => <Profile></Profile>}></Route>
-      </Switch>
-    </Router>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      routesAreActive: false
+    };
+  }
+
+  render() {
+    return (
+      <Router>
+        <Switch>
+          <Route
+            path="/"
+            exact
+            render={props => <SplashScreen></SplashScreen>}
+          ></Route>
+          <Route
+            path="/login"
+            render={props => <LoginForm></LoginForm>}
+          ></Route>
+          <Route
+            path="/signup"
+            render={props => <SignupForm></SignupForm>}
+          ></Route>
+
+          {/* routes to render conditionally */}
+          <Route
+            path="/main"
+            render={props => <SecureDashBoard></SecureDashBoard>}
+          ></Route>
+          <Route path="/new" render={props => <NewTrip></NewTrip>}></Route>
+          <Route path="/profile" render={props => <Profile></Profile>}></Route>
+          <Route path="/history" render={props => <History></History>}></Route>
+        </Switch>
+      </Router>
+    );
+  }
 }
 
 export default App;
