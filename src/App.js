@@ -6,7 +6,7 @@ import NewTrip from "./components/NewTrip";
 import Main from "./components/Main";
 import Profile from "./components/Profile";
 import History from "./components/History";
-import { SplashScreen, LoginForm } from "./components/SplashScreen";
+import { SplashScreen, LoginForm, SignupForm } from "./components/SplashScreen";
 
 import "./App.css";
 
@@ -49,12 +49,16 @@ function App() {
         ></Route>
         <Route path="/login" render={props => <LoginForm></LoginForm>}></Route>
         <Route
+          path="/signup"
+          render={props => <SignupForm></SignupForm>}
+        ></Route>
+        {/* <Route
           path="/main"
           render={props => <SecureDashBoard></SecureDashBoard>}
         ></Route>
         <Route path="/new" render={props => <NewTrip />}></Route>
         <Route path="/history" render={props => <History></History>}></Route>
-        <Route path="/profile" render={props => <Profile></Profile>}></Route>
+        <Route path="/profile" render={props => <Profile></Profile>}></Route> */}
       </Switch>
     </Router>
   );

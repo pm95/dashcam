@@ -54,3 +54,36 @@
   padding: 2px 8px 2px 8px;
   font-size: 16pt;
 }
+
+.signup-container {
+  background: rgb(255, 255, 255);
+  position: relative;
+  border-radius: 4px;
+  box-shadow: 8px 12px 0px 2px var(--color-emphasis);
+
+  height: fit-content;
+  width: 300px;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+
+.signup-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.signup-form-container > * {
+  margin: 20px;
+}
+.signup-form-container > input[type="text"],
+.signup-form-container > input[type="email"] {
+  padding: 2px 8px 2px 8px;
+  font-size: 16pt;
+}
