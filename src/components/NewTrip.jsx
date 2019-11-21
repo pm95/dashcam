@@ -11,7 +11,7 @@ class NewTrip extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      imageURL: "",
+      uploadState: "",
       tripName: "",
       dataObj: null,
       videoLoaded: false
@@ -23,14 +23,15 @@ class NewTrip extends React.Component {
 
   handleUploadImage(ev) {
     this.setState({
-      imageURL: "loading"
+      uploadState: "loading"
     });
 
     ev.preventDefault();
 
     const data = new FormData();
     data.append("file", this.uploadInput.files[0]);
-    data.append("tripName", this.state.tripName);
+    data.append("videoName", this.uploadInput.files[0].name);
+    data.append("email", localStorage.getItem("email"));
 
     fetch(serverUrl + "/api/submit", {
       method: "POST",
@@ -41,20 +42,19 @@ class NewTrip extends React.Component {
       })
       .then(d => {
         this.setState({
-          imageURL: "success"
+          uploadState: d
         });
       })
       .catch(err => {
         console.error(err);
         this.setState({
-          imageURL: "error",
+          uploadState: "error",
           dataObj: data
         });
       });
   }
 
   handleExistingImageUpload() {
-    console.log("asdf");
     if (this.state.dataObj !== null) {
       fetch(serverUrl + "/api/submit", {
         method: "POST",
@@ -65,13 +65,13 @@ class NewTrip extends React.Component {
         })
         .then(d => {
           this.setState({
-            imageURL: "success"
+            uploadState: d
           });
         })
         .catch(err => {
           console.error(err);
           this.setState({
-            imageURL: "error"
+            uploadState: "error"
           });
         });
     }
@@ -87,7 +87,7 @@ class NewTrip extends React.Component {
 
   renderUpload() {
     let result = null;
-    switch (this.state.imageURL) {
+    switch (this.state.uploadState) {
       case "":
         result = (
           <>
@@ -109,8 +109,8 @@ class NewTrip extends React.Component {
 
                 <button>Submit</button>
                 <div>
-                  {this.state.imageURL === "" ? null : (
-                    <p>Uploaded {this.state.imageURL}</p>
+                  {this.state.uploadState === "" ? null : (
+                    <p>Uploaded {this.state.uploadState}</p>
                   )}
                 </div>
               </div>
@@ -134,7 +134,25 @@ class NewTrip extends React.Component {
             <button
               onClick={() => {
                 this.setState({
-                  imageURL: ""
+                  uploadState: ""
+                });
+              }}
+            >
+              Upload new trip
+            </button>
+          </>
+        );
+        break;
+      case "failure":
+        result = (
+          <>
+            <h1 style={{ color: "yellow" }}>
+              Video/email combination already exists
+            </h1>
+            <button
+              onClick={() => {
+                this.setState({
+                  uploadState: ""
                 });
               }}
             >
@@ -162,7 +180,7 @@ class NewTrip extends React.Component {
             <button
               onClick={() => {
                 this.setState({
-                  imageURL: ""
+                  uploadState: ""
                 });
               }}
             >

@@ -6,9 +6,11 @@ import NewTrip from "./components/NewTrip";
 import Main from "./components/Main";
 import Profile from "./components/Profile";
 import History from "./components/History";
-import SplashScreen from "./components/SplashScreen";
+import { SplashScreen, LoginForm } from "./components/SplashScreen";
 
 import "./App.css";
+
+localStorage.setItem("authenticated", "false");
 
 function Header() {
   return (
@@ -45,6 +47,7 @@ function App() {
           exact
           render={props => <SplashScreen></SplashScreen>}
         ></Route>
+        <Route path="/login" render={props => <LoginForm></LoginForm>}></Route>
         <Route
           path="/main"
           render={props => <SecureDashBoard></SecureDashBoard>}

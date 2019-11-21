@@ -39,3 +39,18 @@
   align-items: center;
   text-align: center;
 }
+
+.login-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.login-form-container > * {
+  margin: 20px;
+}
+.login-form-container > input[type="text"] {
+  padding: 2px 8px 2px 8px;
+  font-size: 16pt;
+}

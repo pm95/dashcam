@@ -14,14 +14,11 @@ class Profile extends React.Component {
       firstName: "firstName",
       lastName: "lastName",
       email: "user@domain.com",
-      carMake: "Toyota",
-      carModel: "4Runner",
-      plan: "Free",
-      capacity: "100 GB",
-      available: "100 GB"
+      plan: "Free"
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.updateAccountInfo = this.updateAccountInfo.bind(this);
   }
 
   handleChange(e) {
@@ -35,11 +32,27 @@ class Profile extends React.Component {
 
   updateAccountInfo() {
     console.log(this.state);
+    fetch(serverUrl + "/api/updateuser", {
+      method: "POST",
+      body: JSON.stringify(this.state)
+    })
+      .then(res => {
+        return res.text();
+      })
+      .then(data => {
+        alert(data);
+        console.log(data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
   componentDidMount() {
-    fetch(serverUrl + "/api/getuserdata", {
-      method: "GET"
+    const email = localStorage.getItem("email");
+    fetch(serverUrl + "/api/login", {
+      method: "POST",
+      body: email
     })
       .then(res => {
         return res.json();
@@ -50,8 +63,7 @@ class Profile extends React.Component {
           firstName: data.firstName,
           lastName: data.lastName,
           email: data.email,
-          carMake: data.carMake,
-          carModel: data.carModel
+          plan: data.plan
         });
       })
       .catch(err => {
@@ -72,19 +84,6 @@ class Profile extends React.Component {
       default:
         return "100 GB";
     }
-  }
-
-  getCurrentLocation() {
-    console.log(
-      navigator.geolocation.getCurrentPosition(pos => {
-        let crd = pos.coords;
-
-        console.log("Your current position is:");
-        console.log(`Latitude : ${crd.latitude}`);
-        console.log(`Longitude: ${crd.longitude}`);
-        console.log(`More or less ${crd.accuracy} meters.`);
-      })
-    );
   }
 
   render() {
@@ -116,26 +115,10 @@ class Profile extends React.Component {
 
               <label>Email</label>
               <input
-                onChange={this.handleChange}
-                name="email"
                 type="text"
+                style={{ cursor: "not-allowed" }}
+                readOnly
                 value={this.state.email}
-              ></input>
-
-              <label>Car Make</label>
-              <input
-                onChange={this.handleChange}
-                name="carMake"
-                type="text"
-                value={this.state.carMake}
-              ></input>
-
-              <label>Car Model</label>
-              <input
-                onChange={this.handleChange}
-                name="carModel"
-                type="text"
-                value={this.state.carModel}
               ></input>
             </div>
           </div>
@@ -169,7 +152,7 @@ class Profile extends React.Component {
             </div>
           </div>
 
-          <button onClick={() => this.updateAccountInfo()}>Update Info</button>
+          <button onClick={this.updateAccountInfo}>Update Info</button>
           <Link to="/main">
             <button>
               <img src={home} alt="Home"></img>
