@@ -37,13 +37,6 @@ function SecureDashBoard() {
 }
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      routesAreActive: false
-    };
-  }
-
   render() {
     return (
       <Router>
@@ -62,7 +55,6 @@ class App extends React.Component {
             render={props => <SignupForm></SignupForm>}
           ></Route>
 
-          {/* routes to render conditionally */}
           <Route
             path="/main"
             render={props => <SecureDashBoard></SecureDashBoard>}
