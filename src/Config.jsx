@@ -1,1 +1,1 @@
-export const serverUrl = "http://10.35.74.201:5000";
+export const serverUrl = "http://localhost:5000";

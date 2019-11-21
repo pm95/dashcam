@@ -94,7 +94,7 @@ class NewTrip extends React.Component {
             <form onSubmit={this.handleUploadImage}>
               <div className="new-trip-data">
                 <button className="file-input-container">
-                  Record New
+                  Start New
                   <input
                     id="file-upload"
                     ref={ref => {

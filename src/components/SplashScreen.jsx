@@ -8,10 +8,10 @@ class LoginContainer extends React.Component {
       <div className="login-container">
         <h1>Secure Dashboard</h1>
 
-        <Link to="/">
+        <Link to="/main">
           <button>Login</button>
         </Link>
-        <Link to="/">
+        <Link to="/main">
           <button>Sign Up</button>
         </Link>
         <div>
