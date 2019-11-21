@@ -52,13 +52,13 @@ function App() {
           path="/signup"
           render={props => <SignupForm></SignupForm>}
         ></Route>
-        {/* <Route
+        <Route
           path="/main"
           render={props => <SecureDashBoard></SecureDashBoard>}
         ></Route>
         <Route path="/new" render={props => <NewTrip />}></Route>
         <Route path="/history" render={props => <History></History>}></Route>
-        <Route path="/profile" render={props => <Profile></Profile>}></Route> */}
+        <Route path="/profile" render={props => <Profile></Profile>}></Route>
       </Switch>
     </Router>
   );

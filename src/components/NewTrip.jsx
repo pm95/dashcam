@@ -196,7 +196,7 @@ class NewTrip extends React.Component {
   }
 
   render() {
-    return (
+    const newTripComponent = (
       <div className="new-trip-container">
         <div className="new-trip-top">
           <h1>New Trip</h1>
@@ -211,6 +211,11 @@ class NewTrip extends React.Component {
           </Link>
         </div>
       </div>
+    );
+    return localStorage.getItem("email") ? (
+      newTripComponent
+    ) : (
+      <h1>You must log in to use this app</h1>
     );
   }
 }
