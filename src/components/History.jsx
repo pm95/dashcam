@@ -30,6 +30,7 @@ class History extends React.Component {
       })
       .then(videoNames => {
         videoNames.map(vid => {
+          console.log(vid);
           return fetch(serverUrl + "/api/getvideo", {
             method: "POST",
             body: vid
@@ -77,8 +78,9 @@ class History extends React.Component {
                   muted
                   controls
                   playsInline
+                  autoPlay
                   src={vid}
-                  type="video/*"
+                  type="video/MOV"
                 ></video>
               );
             })}

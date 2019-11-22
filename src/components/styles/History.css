@@ -34,13 +34,25 @@
 .history-video-container {
   width: 80%;
   margin: 0 auto 20px auto;
-  display: grid;
 
-  grid-template-columns: repeat(3, 1fr);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   column-gap: 10px;
   row-gap: 10px;
 }
 
 .history-video {
   width: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+  .history-video-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .history-video-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
