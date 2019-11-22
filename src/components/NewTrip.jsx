@@ -64,26 +64,6 @@ class NewTrip extends React.Component {
 
   handleExistingImageUpload() {
     alert("re-submitting previous attempt");
-    // if (this.state.dataObj !== null) {
-    //   fetch(serverUrl + "/api/submit", {
-    //     method: "POST",
-    //     body: this.state.dataObj
-    //   })
-    //     .then(res => {
-    //       return res.text();
-    //     })
-    //     .then(d => {
-    //       this.setState({
-    //         uploadState: d
-    //       });
-    //     })
-    //     .catch(err => {
-    //       console.error(err);
-    //       this.setState({
-    //         uploadState: "error"
-    //       });
-    //     });
-    // }
   }
 
   handleInputChange(e) {
