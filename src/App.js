@@ -37,6 +37,22 @@ function SecureDashBoard() {
 }
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      linksAreActive: false
+    };
+    this.activateLinks = this.activateLinks.bind(this);
+  }
+
+  activateLinks() {
+    console.log("Activated main app links");
+    this.setState({
+      linksAreActive: true
+    });
+  }
+
   render() {
     return (
       <Router>
@@ -48,20 +64,32 @@ class App extends React.Component {
           ></Route>
           <Route
             path="/login"
-            render={props => <LoginForm></LoginForm>}
+            render={props => (
+              <LoginForm activateLinks={this.activateLinks}></LoginForm>
+            )}
           ></Route>
           <Route
             path="/signup"
             render={props => <SignupForm></SignupForm>}
           ></Route>
 
-          <Route
-            path="/main"
-            render={props => <SecureDashBoard></SecureDashBoard>}
-          ></Route>
-          <Route path="/new" render={props => <NewTrip></NewTrip>}></Route>
-          <Route path="/profile" render={props => <Profile></Profile>}></Route>
-          <Route path="/history" render={props => <History></History>}></Route>
+          {this.state.linksAreActive ? (
+            <>
+              <Route
+                path="/main"
+                render={props => <SecureDashBoard></SecureDashBoard>}
+              ></Route>
+              <Route path="/new" render={props => <NewTrip></NewTrip>}></Route>
+              <Route
+                path="/profile"
+                render={props => <Profile></Profile>}
+              ></Route>
+              <Route
+                path="/history"
+                render={props => <History></History>}
+              ></Route>
+            </>
+          ) : null}
         </Switch>
       </Router>
     );
