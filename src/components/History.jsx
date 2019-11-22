@@ -72,12 +72,13 @@ class History extends React.Component {
             {this.state.videoBlobs.map(vid => {
               return (
                 <video
-                  key={Math.random() * 1000}
-                  src={vid}
-                  loop
-                  style={{ height: "100px" }}
+                  key={vid}
+                  className="history-video"
                   muted
-                  autoPlay
+                  controls
+                  playsInline
+                  src={vid}
+                  type="video/*"
                 ></video>
               );
             })}
