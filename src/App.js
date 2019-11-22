@@ -70,7 +70,9 @@ class App extends React.Component {
           ></Route>
           <Route
             path="/signup"
-            render={props => <SignupForm></SignupForm>}
+            render={props => (
+              <SignupForm activateLinks={this.activateLinks}></SignupForm>
+            )}
           ></Route>
 
           {this.state.linksAreActive ? (

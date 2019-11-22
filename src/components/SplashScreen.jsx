@@ -65,6 +65,7 @@ class SignupForm extends React.Component {
       .then(data => {
         if (data === "user created") {
           localStorage.setItem("email", this.state.email);
+          this.props.activateLinks();
           this.setState({
             validEmail: true
           });
