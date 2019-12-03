@@ -1,6 +1,6 @@
 :root {
   --color-main: rgb(30, 30, 30);
-  --color-main-a: rgb(30, 30, 30, 0.8);
+  --color-main-a: rgb(30, 30, 30, 0.7);
   --color-emphasis: rgb(132, 168, 135);
   --height-header: 10%;
   --height-footer: 5%;
@@ -26,17 +26,6 @@ label {
   background: transparent;
 }
 
-/* MISCELANEOUS */
-#drivervid {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 101%;
-  min-height: 100%;
-  z-index: -1;
-  filter: blur(4px);
-}
-
 /* NATIVE HTML TAGS */
 button {
   font-size: large;
@@ -58,7 +47,7 @@ footer {
 
 header {
   grid-area: "header";
-  font-size: calc(8pt + 2vw);
+  font-size: calc(10pt + 2vw);
 }
 
 footer,
@@ -66,15 +55,18 @@ header {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  color: var(--color-main-a);
+}
+
+.undraw {
+  background: url("./assets/undrawCar.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* APP OVERALL STYLING */
 .App {
-  background-image: url("./assets/road.gif");
-  background-position: center;
-  background-size: cover;
-
-  color: white;
   position: absolute;
   text-align: left;
   overflow: hidden;
@@ -83,7 +75,8 @@ header {
   display: grid;
   grid-template-areas:
     "header"
+    "drawing"
     "main"
     "footer";
-  grid-template-rows: 1fr 3fr 1fr;
+  grid-template-rows: 1fr 3fr 3fr 1fr;
 }

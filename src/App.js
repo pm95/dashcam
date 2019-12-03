@@ -30,6 +30,7 @@ function SecureDashBoard() {
   return (
     <div className="App">
       <Header></Header>
+      <div className="undraw"></div>
       <Main></Main>
       <Footer></Footer>
     </div>
@@ -41,7 +42,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      linksAreActive: false
+      linksAreActive: true
     };
     this.activateLinks = this.activateLinks.bind(this);
   }
