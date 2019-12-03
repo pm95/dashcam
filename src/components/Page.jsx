@@ -10,15 +10,13 @@ export default function Page(props) {
       <div className="page-top">
         <h1 className="page-title">{props.pageTitle}</h1>
         <img src={props.pageImgSrc} alt="Page Img" className="page-img"></img>
-      </div>
-      <div className="page-bottom">
-        {props.children}
         <Link to="/main">
           <button>
             <img src={home} alt="Home"></img>
           </button>
         </Link>
       </div>
+      <div className="page-bottom">{props.children}</div>
     </div>
   );
 }
