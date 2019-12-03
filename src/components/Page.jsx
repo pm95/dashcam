@@ -8,7 +8,7 @@ export default function Page(props) {
   return (
     <div className="page-container">
       <div className="page-top">
-        <h1>{props.pageTitle}</h1>
+        <h1 className="page-title">{props.pageTitle}</h1>
         <img src={props.pageImgSrc} alt="Page Img" className="page-img"></img>
       </div>
       <div className="page-bottom">

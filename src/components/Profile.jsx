@@ -143,8 +143,8 @@ class Profile extends React.Component {
               readOnly
             ></input>
           </div>
+          <button onClick={this.updateAccountInfo}>Update Info</button>
         </div>
-        <button onClick={this.updateAccountInfo}>Update Info</button>
       </Page>
     );
   }
