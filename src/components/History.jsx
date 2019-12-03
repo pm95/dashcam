@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Page from "./Page";
 
 import undrawCalendar from "../assets/undrawCalendar.png";
