@@ -6,6 +6,7 @@ import NewTrip from "./components/NewTrip";
 import Main from "./components/Main";
 import Profile from "./components/Profile";
 import History from "./components/History";
+import LoginFirst from "./components/LoginFirst";
 import { SplashScreen, LoginForm, SignupForm } from "./components/SplashScreen";
 
 import "./App.css";
@@ -42,7 +43,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      linksAreActive: true
+      linksAreActive: false
     };
     this.activateLinks = this.activateLinks.bind(this);
   }
@@ -92,7 +93,9 @@ class App extends React.Component {
                 render={props => <History></History>}
               ></Route>
             </>
-          ) : null}
+          ) : (
+            <LoginFirst></LoginFirst>
+          )}
         </Switch>
       </Router>
     );
