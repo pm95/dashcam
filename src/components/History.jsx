@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Page from "./Page";
 
-import calendar from "../assets/calendar.png";
-import home from "../assets/home.png";
+import undrawCalendar from "../assets/undrawCalendar.png";
 
 import { serverUrl } from "../Config";
 
@@ -29,26 +29,20 @@ class History extends React.Component {
         return data.videos;
       })
       .then(videoNames => {
-        videoNames.map(vid => {
+        videoNames.map(async vid => {
           console.log(vid);
-          return fetch(serverUrl + "/api/getvideo", {
-            method: "POST",
-            body: vid
-          })
-            .then(res => {
-              return res.blob();
-            })
-            .then(data => {
-              this.setState({
-                videoBlobs: [
-                  ...this.state.videoBlobs,
-                  URL.createObjectURL(data)
-                ]
-              });
-            })
-            .catch(err => {
-              console.error(err);
+          try {
+            const res = await fetch(serverUrl + "/api/getvideo", {
+              method: "POST",
+              body: vid
             });
+            const data = await res.blob();
+            this.setState({
+              videoBlobs: [...this.state.videoBlobs, URL.createObjectURL(data)]
+            });
+          } catch (err) {
+            console.error(err);
+          }
         });
       })
       .catch(err => {
@@ -62,37 +56,24 @@ class History extends React.Component {
 
   render() {
     return (
-      <div className="history-container">
-        <div className="history-top">
-          <img src={calendar} alt="history"></img>
+      <Page pageTitle="Your Trip History" pageImgSrc={undrawCalendar}>
+        <div className="history-video-container">
+          {this.state.videoBlobs.map(vid => {
+            return (
+              <video
+                key={vid}
+                className="history-video"
+                muted
+                controls
+                playsInline
+                autoPlay
+                src={vid}
+                type="video/MOV"
+              ></video>
+            );
+          })}
         </div>
-        <div className="history-bottom">
-          <h1>Your Trip History</h1>
-
-          <div className="history-video-container">
-            {this.state.videoBlobs.map(vid => {
-              return (
-                <video
-                  key={vid}
-                  className="history-video"
-                  muted
-                  controls
-                  playsInline
-                  autoPlay
-                  src={vid}
-                  type="video/MOV"
-                ></video>
-              );
-            })}
-          </div>
-
-          <Link to="/main">
-            <button>
-              <img src={home} alt="Home"></img>
-            </button>
-          </Link>
-        </div>
-      </div>
+      </Page>
     );
   }
 }
