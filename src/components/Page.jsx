@@ -9,7 +9,7 @@ export default function Page(props) {
     <div className="page-container">
       <div className="page-top">
         <h1>{props.pageTitle}</h1>
-        <img src={props.pageImgSrc} alt="Page Img"></img>
+        <img src={props.pageImgSrc} alt="Page Img" className="page-img"></img>
       </div>
       <div className="page-bottom">
         {props.children}

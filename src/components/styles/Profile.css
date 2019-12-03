@@ -1,42 +1,8 @@
-.profile-container {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-}
-
-.profile-top {
-  height: 20%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.profile-top img {
-  height: 100px;
-}
-
-.profile-bottom {
-  height: 80%;
-  position: relative;
-  background: var(--color-main-a);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-  text-align: center;
-  color: white;
-  overflow: scroll;
-}
-
 .profile-info-wrapper {
   padding: 0 5vw 0 5vw;
 }
 
 .profile-info-container {
-  color: white;
   text-align: left;
   display: grid;
   align-items: center;

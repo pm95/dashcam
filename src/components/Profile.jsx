@@ -1,11 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
-import user from "../assets/user.png";
-import home from "../assets/home.png";
-
-import "./styles/Profile.css";
+import Page from "./Page";
 import { serverUrl } from "../Config";
+
+import undrawProfile from "../assets/undrawProfile.png";
+import "./styles/Profile.css";
 
 class Profile extends React.Component {
   constructor(props) {
@@ -88,78 +86,66 @@ class Profile extends React.Component {
 
   render() {
     return (
-      <div className="profile-container">
-        <div className="profile-top">
-          <img src={user} alt="Profile"></img>
-        </div>
-        <div className="profile-bottom">
-          <h1>Welcome {this.state.firstName}</h1>
-          <div className="profile-info-wrapper">
-            <h2>Account Information</h2>
-            <div className="profile-info-container">
-              <label>First Name</label>
-              <input
-                onChange={this.handleChange}
-                name="firstName"
-                type="text"
-                value={this.state.firstName}
-              ></input>
+      <Page pageTitle="Profile" pageImgSrc={undrawProfile}>
+        <div className="profile-info-wrapper">
+          <h2>Account Information</h2>
+          <div className="profile-info-container">
+            <label>First Name</label>
+            <input
+              onChange={this.handleChange}
+              name="firstName"
+              type="text"
+              value={this.state.firstName}
+            ></input>
 
-              <label>Last Name</label>
-              <input
-                onChange={this.handleChange}
-                name="lastName"
-                type="text"
-                value={this.state.lastName}
-              ></input>
+            <label>Last Name</label>
+            <input
+              onChange={this.handleChange}
+              name="lastName"
+              type="text"
+              value={this.state.lastName}
+            ></input>
 
-              <label>Email</label>
-              <input
-                type="text"
-                style={{ cursor: "not-allowed" }}
-                readOnly
-                value={this.state.email}
-              ></input>
-            </div>
+            <label>Email</label>
+            <input
+              type="text"
+              style={{ cursor: "not-allowed" }}
+              readOnly
+              value={this.state.email}
+            ></input>
           </div>
-
-          <div className="profile-info-wrapper">
-            <h2>Subscription Information</h2>
-            <div className="profile-info-container">
-              <label>Plan</label>
-              <select
-                value={this.state.plan}
-                name="plan"
-                onChange={this.handleChange}
-              >
-                <option value="Premium">Premium</option>
-                <option value="Pro">Pro</option>
-                <option value="Basic">Basic</option>
-                <option value="Free">Free</option>
-              </select>
-              <label>Storage Capacity</label>
-              <input
-                type="text"
-                value={this.calcStorageCapacity()}
-                readOnly
-              ></input>
-              <label>Available Storage</label>
-              <input
-                type="text"
-                value={this.calcStorageCapacity()}
-                readOnly
-              ></input>
-            </div>
-          </div>
-
-          <button onClick={this.updateAccountInfo}>Update Info</button>
-          <Link to="/main">
-            <button>
-              <img src={home} alt="Home"></img>
-            </button>
-          </Link>
         </div>
-      </div>
+
+        <div className="profile-info-wrapper">
+          <h2>Subscription Information</h2>
+          <div className="profile-info-container">
+            <label>Plan</label>
+            <select
+              value={this.state.plan}
+              name="plan"
+              onChange={this.handleChange}
+            >
+              <option value="Premium">Premium</option>
+              <option value="Pro">Pro</option>
+              <option value="Basic">Basic</option>
+              <option value="Free">Free</option>
+            </select>
+            <label>Storage Capacity</label>
+            <input
+              type="text"
+              value={this.calcStorageCapacity()}
+              readOnly
+            ></input>
+            <label>Available Storage</label>
+            <input
+              type="text"
+              value={this.calcStorageCapacity()}
+              readOnly
+            ></input>
+          </div>
+        </div>
+        <button onClick={this.updateAccountInfo}>Update Info</button>
+      </Page>
     );
   }
 }
