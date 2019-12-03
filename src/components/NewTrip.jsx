@@ -1,10 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import undrawNewTrip from "../assets/undrawNewTrip.png";
-import home from "../assets/home.png";
-
+import Page from "./Page";
 import { serverUrl } from "../Config";
 
+import undrawNewTrip from "../assets/undrawNewTrip.png";
 import "./styles/NewTrip.css";
 
 class NewTrip extends React.Component {
@@ -180,20 +178,9 @@ class NewTrip extends React.Component {
 
   render() {
     return (
-      <div className="new-trip-container">
-        <div className="new-trip-top">
-          <h1>New Trip</h1>
-          <img src={undrawNewTrip} alt="Car"></img>
-        </div>
-        <div className="new-trip-bottom">
-          {this.renderUpload()}
-          <Link to="/main">
-            <button>
-              <img src={home} alt="Home"></img>
-            </button>
-          </Link>
-        </div>
-      </div>
+      <Page pageTitle="New Trip" pageImgSrc={undrawNewTrip}>
+        {this.renderUpload()}
+      </Page>
     );
   }
 }
