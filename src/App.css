@@ -4,6 +4,7 @@
   --color-emphasis: rgb(132, 168, 135);
   --height-header: 10%;
   --height-footer: 5%;
+  --header-size: calc(8pt + 2vw);
 }
 
 select,
@@ -47,7 +48,7 @@ footer {
 
 header {
   grid-area: "header";
-  font-size: calc(10pt + 2vw);
+  font-size: var(--header-size);
 }
 
 footer,

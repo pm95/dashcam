@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import carColored from "../assets/carColored.png";
+import undrawNewTrip from "../assets/undrawNewTrip.png";
 import home from "../assets/home.png";
 
 import { serverUrl } from "../Config";
@@ -183,7 +183,7 @@ class NewTrip extends React.Component {
       <div className="new-trip-container">
         <div className="new-trip-top">
           <h1>New Trip</h1>
-          <img src={carColored} alt="Car"></img>
+          <img src={undrawNewTrip} alt="Car"></img>
         </div>
         <div className="new-trip-bottom">
           {this.renderUpload()}
