@@ -102,16 +102,14 @@ class NewTrip extends React.Component {
       case "loading":
         result = (
           <>
-            <h1 style={{ color: "white" }}>
-              Uploading your video, please hang on ...
-            </h1>
+            <h1>Uploading your video, please hang on ...</h1>
           </>
         );
         break;
       case "success":
         result = (
           <>
-            <h1 style={{ color: "white" }}>Video uploaded successfully</h1>
+            <h1 style={{ color: "#84a887" }}>Video uploaded successfully</h1>
             <button
               onClick={() => {
                 this.setState({
@@ -127,7 +125,7 @@ class NewTrip extends React.Component {
       case "failure":
         result = (
           <>
-            <h1 style={{ color: "yellow" }}>
+            <h1 style={{ color: "#a88484" }}>
               Video/email combination already exists
             </h1>
             <button
@@ -145,10 +143,10 @@ class NewTrip extends React.Component {
       case "error":
         result = (
           <>
-            <h1 style={{ color: "rgb(252, 67, 76)" }}>
+            <h1 style={{ color: "rgb(255, 86, 100)" }}>
               Error when uploading video
             </h1>
-            <h2 style={{ color: "rgb(252, 67, 76)" }}>
+            <h2 style={{ color: "rgb(205, 36, 50)" }}>
               Likely due to server disconnect ...
             </h2>
             <button
