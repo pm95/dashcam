@@ -12,7 +12,8 @@ class History extends React.Component {
     super(props);
 
     this.state = {
-      videoBlobs: []
+      videoBlobs: [],
+      videoDict: {}
     };
 
     this.fetchVideoList = this.fetchVideoList.bind(this);
@@ -36,8 +37,10 @@ class History extends React.Component {
               body: vid
             });
             const data = await res.blob();
+            const blobURL = URL.createObjectURL(data);
             this.setState({
-              videoBlobs: [...this.state.videoBlobs, URL.createObjectURL(data)]
+              videoBlobs: [...this.state.videoBlobs, blobURL],
+              videoDict: { ...this.state.videoDict, [blobURL]: vid }
             });
           } catch (err) {
             console.error(err);
@@ -53,22 +56,56 @@ class History extends React.Component {
     this.fetchVideoList();
   }
 
+  deleteVideo(blobURL) {
+    const videoName = this.state.videoDict[blobURL];
+    fetch(serverUrl + "/api/deletevideo", {
+      method: "POST",
+      body: videoName
+    })
+      .then(res => {
+        return res.text();
+      })
+      .then(data => {
+        if (data === "success") {
+          // remove key from blobUrl:video name "dictionary"
+          let newVideoDict = { ...this.state.videoDict };
+          delete newVideoDict[blobURL];
+
+          //   filter out blob from video blobs array
+          const newVideoBlobs = [...this.state.videoBlobs].filter(vb => {
+            return vb !== blobURL;
+          });
+
+          //   set the new state
+          this.setState({
+            videoDict: { ...newVideoDict },
+            videoBlobs: [...newVideoBlobs]
+          });
+        }
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
   render() {
     return (
       <Page pageTitle="Your Trip History" pageImgSrc={undrawCalendar}>
         <div className="history-video-container">
           {this.state.videoBlobs.map(vid => {
             return (
-              <video
-                key={vid}
-                className="history-video"
-                muted
-                controls
-                playsInline
-                autoPlay
-                src={vid}
-                type="video/MOV"
-              ></video>
+              <div key={vid}>
+                <video
+                  className="history-video"
+                  muted
+                  controls
+                  playsInline
+                  autoPlay
+                  src={vid}
+                  type="video/MOV"
+                ></video>
+                <button onClick={() => this.deleteVideo(vid)}>Delete</button>
+              </div>
             );
           })}
         </div>

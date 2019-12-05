@@ -87,12 +87,18 @@ class NewTrip extends React.Component {
                     ref={ref => {
                       this.uploadInput = ref;
                     }}
+                    onChange={() => {
+                      alert("Trip captured successfully");
+                    }}
                     type="file"
                     accept="video/*"
                     capture="camera"
                     required
                   />
                 </button>
+                {this.state.tripName === "" ? null : (
+                  <h2>{this.state.tripName} selected</h2>
+                )}
                 <button>Submit</button>
               </div>
             </form>

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 
 import NewTrip from "./components/NewTrip";
 import Main from "./components/Main";
@@ -14,7 +14,7 @@ import "./App.css";
 function Header() {
   return (
     <header>
-      <h1>Secure Dashboard</h1>
+      <h1>SecureDashboard</h1>
     </header>
   );
 }
@@ -23,6 +23,10 @@ function Footer() {
   return (
     <footer>
       <p>Pietro Malky © 2019</p>
+
+      <Link to="/">
+        <button>Sign out</button>
+      </Link>
     </footer>
   );
 }
@@ -43,7 +47,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      linksAreActive: false
+      linksAreActive: true
     };
     this.activateLinks = this.activateLinks.bind(this);
   }
