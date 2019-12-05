@@ -49,7 +49,7 @@ class App extends React.Component {
 
     this.state = {
       linksAreActive: false,
-      email: "not@logged.in"
+      email: null
     };
     this.activateLinks = this.activateLinks.bind(this);
   }
