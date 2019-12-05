@@ -81,3 +81,9 @@ header {
     "footer";
   grid-template-rows: 1fr 3fr 3fr 1fr;
 }
+
+@media screen and (max-width: 900px) {
+  header {
+    flex-direction: column;
+  }
+}

@@ -184,8 +184,8 @@ class LoginForm extends React.Component {
           this.setState({
             authenticated: true
           });
-          this.props.activateLinks();
           localStorage.setItem("email", this.state.email);
+          this.props.activateLinks();
         } else {
           this.setState({
             email: ""

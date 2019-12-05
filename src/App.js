@@ -11,10 +11,12 @@ import { SplashScreen, LoginForm, SignupForm } from "./components/SplashScreen";
 
 import "./App.css";
 
-function Header() {
+function Header({ email }) {
+  console.log(email);
   return (
     <header>
       <h1>SecureDashboard</h1>
+      <p>Welcome, {email}</p>
     </header>
   );
 }
@@ -23,7 +25,6 @@ function Footer() {
   return (
     <footer>
       <p>Pietro Malky © 2019</p>
-
       <Link to="/">
         <button>Sign out</button>
       </Link>
@@ -31,10 +32,10 @@ function Footer() {
   );
 }
 
-function SecureDashBoard() {
+function SecureDashBoard({ email }) {
   return (
     <div className="App">
-      <Header></Header>
+      <Header email={email}></Header>
       <div className="undraw"></div>
       <Main></Main>
       <Footer></Footer>
@@ -47,7 +48,8 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      linksAreActive: true
+      linksAreActive: false,
+      email: "not@logged.in"
     };
     this.activateLinks = this.activateLinks.bind(this);
   }
@@ -55,7 +57,8 @@ class App extends React.Component {
   activateLinks() {
     console.log("Activated main app links");
     this.setState({
-      linksAreActive: true
+      linksAreActive: true,
+      email: localStorage.getItem("email")
     });
   }
 
@@ -85,7 +88,12 @@ class App extends React.Component {
             <>
               <Route
                 path="/main"
-                render={props => <SecureDashBoard></SecureDashBoard>}
+                render={props => (
+                  <SecureDashBoard
+                    {...props}
+                    email={this.state.email}
+                  ></SecureDashBoard>
+                )}
               ></Route>
               <Route path="/new" render={props => <NewTrip></NewTrip>}></Route>
               <Route
