@@ -31,20 +31,6 @@
   overflow: scroll;
 }
 
-.history-video-container p {
-  cursor: pointer;
-  color: red;
-  font-family: monospace;
-  font-size: 20px;
-  padding: 0;
-  margin: 0 10px 0 10px;
-}
-
-.history-video-button-wrapper {
-  display: flex;
-  justify-content: space-evenly;
-}
-
 .history-video-container {
   width: 80%;
   margin: 20px auto 20px auto;

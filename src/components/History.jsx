@@ -94,18 +94,16 @@ class History extends React.Component {
         <div className="history-video-container">
           {this.state.videoBlobs.map(vid => {
             return (
-              <div key={vid} className="history-video-button-wrapper">
-                <video
-                  className="history-video"
-                  muted
-                  controls
-                  playsInline
-                  autoPlay
-                  src={vid}
-                  type="video/MOV"
-                ></video>
-                <p onClick={() => this.deleteVideo(vid)}>X</p>
-              </div>
+              <video
+                className="history-video"
+                muted
+                controls
+                playsInline
+                autoPlay
+                src={vid}
+                type="video/MOV"
+                key={vid}
+              ></video>
             );
           })}
         </div>
