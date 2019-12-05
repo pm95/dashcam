@@ -94,7 +94,7 @@ class History extends React.Component {
         <div className="history-video-container">
           {this.state.videoBlobs.map(vid => {
             return (
-              <div key={vid}>
+              <div key={vid} className="history-video-button-wrapper">
                 <video
                   className="history-video"
                   muted
@@ -104,7 +104,7 @@ class History extends React.Component {
                   src={vid}
                   type="video/MOV"
                 ></video>
-                <button onClick={() => this.deleteVideo(vid)}>Delete</button>
+                <p onClick={() => this.deleteVideo(vid)}>X</p>
               </div>
             );
           })}
